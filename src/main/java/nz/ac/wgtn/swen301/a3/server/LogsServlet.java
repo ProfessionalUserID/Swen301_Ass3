@@ -6,10 +6,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
 public class LogsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        int n;
+
+        try {
+           n = Integer.parseInt(req.getParameter("limit"));
+        }catch (NumberFormatException e){
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        String m = req.getParameter("level");
+        if (m==null) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        resp.setContentType("application/json");
+
+
 
         super.doGet(req, resp);
     }
