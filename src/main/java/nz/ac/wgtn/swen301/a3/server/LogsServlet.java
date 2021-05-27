@@ -1,5 +1,7 @@
 package nz.ac.wgtn.swen301.a3.server;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import javax.servlet.ServletException;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,6 +24,7 @@ public class LogsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int n;
+        PrintWriter pw = resp.getWriter();
 
         try {
            n = Integer.parseInt(req.getParameter("limit"));
@@ -55,7 +59,15 @@ public class LogsServlet extends HttpServlet {
             return 0;
         });
 
-        super.doGet(req, resp);
+        ObjectMapper om = new ObjectMapper();
+        ArrayNode an = om.createArrayNode();
+
+        for (int i = 0; i < n && i < a.size(); i++){
+            an.add(a.get(i));
+        }
+
+        pw.print(om.writerWithDefaultPrettyPrinter().writeValueAsString(an));
+        pw.close();
     }
 
     @Override
