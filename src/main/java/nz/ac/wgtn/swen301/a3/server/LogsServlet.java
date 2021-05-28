@@ -1,5 +1,9 @@
 package nz.ac.wgtn.swen301.a3.server;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -14,6 +18,8 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 public class LogsServlet extends HttpServlet {
@@ -92,9 +98,52 @@ public class LogsServlet extends HttpServlet {
             return;
         }
 
-        ObjectMapper map = new ObjectMapper();
-        ObjectNode node = map.createObjectNode();
-        //node.
+        try {
+            ObjectMapper map = new ObjectMapper();
+            ObjectNode node = map.readValue(string.toString(), ObjectNode.class);
+            HashSet<JsonNode> jnodes = new HashSet<>();
+            jnodes.add(node.get("id"));
+            jnodes.add(node.get("message"));
+            jnodes.add(node.get("timestamp"));
+            jnodes.add(node.get("thread"));
+            jnodes.add(node.get("logger"));
+            jnodes.add(node.get("level"));
+
+            if (jnodes.contains(null)) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "invalid input, object invalid");
+                return;
+            }
+
+            for (ObjectNode on : Persistency.DB){
+                if (node.get("id").textValue().equals(on.get("id").textValue())){
+                    resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "invalid input, object invalid");
+                    return;
+                }
+            }
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                try {
+                    sdf.parse(node.get("timestamp").textValue());
+                } catch (ParseException e) {
+                    resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "invalid input, object invalid");
+                    return;
+                }
+
+            Iterator<Map.Entry<String, JsonNode>> fields = node.fields();
+            while (fields.hasNext()) {
+                Map.Entry<String, JsonNode> field = fields.next();
+                jnodes.add(field.getValue());
+            }
+
+            if((jnodes.size() > 7 && jnodes.contains(node.get("errorDetails"))) || (jnodes.size() > 6 && !jnodes.contains(node.get("errorDetails")))){
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "invalid input, object invalid");
+                return;
+            }
+
+        }catch (JsonProcessingException e){
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "invalid input, object invalid");
+            return;
+        }
 
         super.doPost(req, resp);
     }
