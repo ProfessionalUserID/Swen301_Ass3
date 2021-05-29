@@ -38,6 +38,18 @@ public class TestGetLogs {
         assertEquals(400,response.getStatus());
     }
 
+    @Test
+    public void GetLogsTest_3() throws IOException, ServletException {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setParameter("name","J");
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        LogsServlet service = new LogsServlet();
+        service.doGet(request,response);
+
+        assertEquals(400,response.getStatus());
+    }
+
 
 
 
