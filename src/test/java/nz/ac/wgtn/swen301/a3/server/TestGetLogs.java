@@ -6,6 +6,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -60,7 +61,7 @@ public class TestGetLogs {
         LogsServlet service = new LogsServlet();
         service.doGet(request,response);
 
-        assertTrue(response.getContentType().startsWith("application/json"));
+        assertTrue(Objects.requireNonNull(response.getContentType()).startsWith("application/json"));
     }
 
 
