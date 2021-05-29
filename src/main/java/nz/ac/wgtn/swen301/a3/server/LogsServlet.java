@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import jdk.jfr.Percentage;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -140,12 +141,13 @@ public class LogsServlet extends HttpServlet {
                 return;
             }
 
+            Persistency.DB.add(node);
+
         }catch (JsonProcessingException e){
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "invalid input, object invalid");
             return;
         }
-
-        super.doPost(req, resp);
+        resp.setStatus(HttpServletResponse.SC_CREATED);
     }
 
     @Override
