@@ -117,7 +117,7 @@ public class LogsServlet extends HttpServlet {
 
             for (ObjectNode on : Persistency.DB){
                 if (node.get("id").textValue().equals(on.get("id").textValue())){
-                    resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "invalid input, object invalid");
+                    resp.sendError(HttpServletResponse.SC_CONFLICT, "invalid input, object invalid");
                     return;
                 }
             }
