@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestGetLogs {
 
@@ -25,8 +26,20 @@ public class TestGetLogs {
 
 
     @Test
-    public void GetLogsTest_2() throws IOException {
+    public void GetLogsTest_2() throws IOException, ServletException {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setParameter("not a valid param name","42");
+        MockHttpServletResponse response = new MockHttpServletResponse();
+        // wrong query parameter
 
+        LogsServlet service = new LogsServlet();
+        service.doGet(request,response);
+
+        assertEquals(400,response.getStatus());
     }
+
+
+
+
 
 }
