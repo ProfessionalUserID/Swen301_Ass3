@@ -5,8 +5,12 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -64,6 +68,21 @@ public class TestGetLogs {
         assertTrue(Objects.requireNonNull(response.getContentType()).startsWith("application/json"));
     }
 
+    @Test
+    public void GetLogsTest_5() throws IOException, ServletException {
+        Persistency.DB.clear();
 
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setParameter("limit","3");
+        request.setParameter("level","ALL");
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        LogsServlet servlet = new LogsServlet();
+        servlet.doGet(request,response);
+
+        String result = response.getContentAsString();
+        assertEquals("[ ]", result);
+        assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+    }
 
 }
