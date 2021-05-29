@@ -50,7 +50,18 @@ public class TestGetLogs {
         assertEquals(400,response.getStatus());
     }
 
+    @Test
+    public void GetLogsTest_4() throws IOException, ServletException {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setParameter("level","ALL");
+        request.setParameter("limit","1");
+        MockHttpServletResponse response = new MockHttpServletResponse();
 
+        LogsServlet service = new LogsServlet();
+        service.doGet(request,response);
+
+        assertTrue(response.getContentType().startsWith("application/json"));
+    }
 
 
 
