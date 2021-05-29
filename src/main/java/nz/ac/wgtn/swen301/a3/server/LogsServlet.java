@@ -141,6 +141,11 @@ public class LogsServlet extends HttpServlet {
                 return;
             }
 
+            if(!priorities.containsKey(node.get("level").textValue())){
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "invalid input, object invalid");
+                return;
+            }
+
             Persistency.DB.add(node);
 
         }catch (JsonProcessingException e){

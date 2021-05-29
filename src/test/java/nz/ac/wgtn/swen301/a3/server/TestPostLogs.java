@@ -28,7 +28,7 @@ public class TestPostLogs {
 
     @Test
     public void PostLogsTest_2() throws IOException, ServletException {
-        String logEventOne = "{\n" +
+        String logEvent = "{\n" +
                 "    \"id\": \"d290f1ee-6c54-4b01-90e6-d701748f0851\",\n" +
                 "    \"message\": \"application started\",\n" +
                 "    \"timestamp\": \"04-05-2021 10:12:00\",\n" +
@@ -44,12 +44,38 @@ public class TestPostLogs {
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
 
-        byte[] byteArray = logEventOne.getBytes();
+        byte[] byteArray = logEvent.getBytes();
         request.setContent(byteArray);
         servlet.doPost(request,response);
         assertEquals(1, Persistency.DB.size());
 
         assertEquals(201, response.getStatus());
+    }
+
+    @Test
+    public void PostLogsTest_3() throws IOException, ServletException {
+        String logEvent = "{\n" +
+                "    \"id\": \"d290f1ee-6c54-4b01-90e6-d701748f0851\",\n" +
+                "    \"message\": \"application started\",\n" +
+                "    \"timestamp\": \"04-05-2021 10:12:00\",\n" +
+                "    \"thread\": \"main\",\n" +
+                "    \"logger\": \"com.example.Foo\",\n" +
+                "    \"level\": \"fakelevel\",\n" +
+                "    \"errorDetails\": \"string\"\n" +
+                "  }";
+
+        Persistency.DB.clear();
+        LogsServlet servlet = new LogsServlet();
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        byte[] byteArray = logEvent.getBytes();
+        request.setContent(byteArray);
+        servlet.doPost(request,response);
+        assertEquals(0, Persistency.DB.size());
+
+        assertEquals(400, response.getStatus());
     }
 
 }
