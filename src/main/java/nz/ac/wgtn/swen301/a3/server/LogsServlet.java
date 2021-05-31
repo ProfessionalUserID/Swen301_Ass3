@@ -54,7 +54,7 @@ public class LogsServlet extends HttpServlet {
         ArrayList<ObjectNode> a = new ArrayList<>();
 
         for (ObjectNode o : Persistency.DB) {
-            if (priorities.get(o.get("level").toString().toUpperCase()) <= priorities.get(m)){
+            if (priorities.get(o.get("level").textValue().toUpperCase()) <= priorities.get(m)){
                 a.add(o);
             }
         }

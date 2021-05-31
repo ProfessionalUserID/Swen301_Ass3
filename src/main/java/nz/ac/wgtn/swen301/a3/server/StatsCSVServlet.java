@@ -74,6 +74,7 @@ public class StatsCSVServlet extends HttpServlet {
                 m.put(level, 1);
             }
             else m.put(level, m.get(level)+1);
+            tableMap.put(name, m);
         }
 
         out.print("logger");
