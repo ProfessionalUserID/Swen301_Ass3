@@ -1,13 +1,10 @@
 package nz.ac.wgtn.swen301.a3.server;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import jdk.jfr.Percentage;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

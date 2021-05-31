@@ -1,6 +1,5 @@
 package nz.ac.wgtn.swen301.a3.server;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import javax.servlet.ServletException;
