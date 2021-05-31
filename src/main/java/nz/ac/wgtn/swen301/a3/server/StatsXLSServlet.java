@@ -1,4 +1,6 @@
 package nz.ac.wgtn.swen301.a3.server;
 
-public class StatsXLSServlet {
+import javax.servlet.http.HttpServlet;
+
+public class StatsXLSServlet extends HttpServlet {
 }
