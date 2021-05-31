@@ -20,39 +20,6 @@ public class StatsCSVServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Persistency.DB.clear();
-        ObjectMapper objectMapper1 = new ObjectMapper();
-        ObjectNode objectNode1 = objectMapper1.createObjectNode();
-        objectNode1.put("id", "d290f1ee-6c54-4b01-90e6-d701748f0851");
-        objectNode1.put("message", "application started");
-        objectNode1.put("timestamp", "04-05-2021 10:12:00");
-        objectNode1.put("thread", "main");
-        objectNode1.put("logger", "com.example.Foo");
-        objectNode1.put("level", "OFF");
-        objectNode1.put("errorDetails", "string");
-        Persistency.DB.add(objectNode1);
-
-        ObjectNode objectNode2 = objectMapper1.createObjectNode();
-        objectNode2.put("id", "d290f1ee-6c54-4b01-90e6-d701748f0851");
-        objectNode2.put("message", "application started");
-        objectNode2.put("timestamp", "05-05-2021 10:12:00");
-        objectNode2.put("thread", "main");
-        objectNode2.put("logger", "com.example.Foo");
-        objectNode2.put("level", "ALL");
-        objectNode2.put("errorDetails", "string");
-        Persistency.DB.add(objectNode2);
-
-        ObjectNode objectNode3 = objectMapper1.createObjectNode();
-        objectNode3.put("id", "d290f1ee-6c54-4b01-90e6-d701748f0851");
-        objectNode3.put("message", "application started");
-        objectNode3.put("timestamp", "06-05-2021 10:12:00");
-        objectNode3.put("thread", "main");
-        objectNode3.put("logger", "ok");
-        objectNode3.put("level", "TRACE");
-        objectNode3.put("errorDetails", "string");
-        Persistency.DB.add(objectNode3);
-        Persistency.DB.add(objectNode3);
-
         List<String> levels = new ArrayList<>(Arrays.asList("ALL", "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "OFF"));
 
         resp.setContentType("text/csv");
