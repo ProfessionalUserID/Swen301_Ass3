@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestStatsCSV {
 
     @Test
-    public void StatsCSVTest_1() throws ServletException, IOException {
+    public void testStatsCSV_1() throws ServletException, IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -26,7 +26,7 @@ public class TestStatsCSV {
     }
 
     @Test
-    public void StatsCSVTest_2() throws ServletException, IOException {
+    public void testStatsCSV_2() throws ServletException, IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();

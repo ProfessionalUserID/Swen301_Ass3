@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestGetLogs {
 
     @Test
-    public void GetLogsTest_1() throws IOException, ServletException {
+    public void testGetLogs_1() throws IOException, ServletException {
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
         // query parameter missing
@@ -28,10 +28,8 @@ public class TestGetLogs {
         assertEquals(400,response.getStatus());
     }
 
-
-
     @Test
-    public void GetLogsTest_2() throws IOException, ServletException {
+    public void testGetLogs_2() throws IOException, ServletException {
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.setParameter("not a valid param name","42");
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -44,7 +42,7 @@ public class TestGetLogs {
     }
 
     @Test
-    public void GetLogsTest_3() throws IOException, ServletException {
+    public void testGetLogs_3() throws IOException, ServletException {
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.setParameter("name","J");
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -56,7 +54,7 @@ public class TestGetLogs {
     }
 
     @Test
-    public void GetLogsTest_4() throws IOException, ServletException {
+    public void testGetLogs_4() throws IOException, ServletException {
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.setParameter("level","ALL");
         request.setParameter("limit","1");
@@ -69,7 +67,7 @@ public class TestGetLogs {
     }
 
     @Test
-    public void GetLogsTest_5() throws IOException, ServletException {
+    public void testGetLogs_5() throws IOException, ServletException {
         Persistency.DB.clear();
 
         MockHttpServletRequest request = new MockHttpServletRequest();

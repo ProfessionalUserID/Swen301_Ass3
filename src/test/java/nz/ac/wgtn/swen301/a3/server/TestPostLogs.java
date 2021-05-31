@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestPostLogs {
 
     @Test
-    public void PostLogsTest_1() throws IOException, ServletException {
+    public void testPostLogs_1() throws IOException, ServletException {
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.setParameter("level","ALL");
         request.setParameter("limit","1");
@@ -27,7 +27,7 @@ public class TestPostLogs {
     }
 
     @Test
-    public void PostLogsTest_2() throws IOException, ServletException {
+    public void testPostLogs_2() throws IOException, ServletException {
         String logEvent = "{\n" +
                 "    \"id\": \"d290f1ee-6c54-4b01-90e6-d701748f0851\",\n" +
                 "    \"message\": \"application started\",\n" +
@@ -53,7 +53,7 @@ public class TestPostLogs {
     }
 
     @Test
-    public void PostLogsTest_3() throws IOException, ServletException {
+    public void testPostLogs_3() throws IOException, ServletException {
         String logEvent = "{\n" +
                 "    \"id\": \"d290f1ee-6c54-4b01-90e6-d701748f0851\",\n" +
                 "    \"message\": \"application started\",\n" +
@@ -79,7 +79,7 @@ public class TestPostLogs {
     }
 
     @Test
-    public void PostLogsTest_4() throws IOException, ServletException {
+    public void testPostLogs_4() throws IOException, ServletException {
         String logEvent = "{\n" +
                 "    \"id\": \"d290f1ee-6c54-4b01-90e6-d701748f0851\",\n" +
                 "    \"message\": \"application started\",\n" +
@@ -104,7 +104,7 @@ public class TestPostLogs {
     }
 
     @Test
-    public void PostLogsTest_5() throws IOException, ServletException {
+    public void testPostLogs_5() throws IOException, ServletException {
         String logEvent = "{\n" +
                 "    \"id\": \"d290f1ee-6c54-4b01-90e6-d701748f0851\",\n" +
                 "    \"message\": \"application started\",\n" +
@@ -130,7 +130,7 @@ public class TestPostLogs {
     }
 
     @Test
-    public void PostLogsTest_6() throws IOException, ServletException {
+    public void testPostLogs_6() throws IOException, ServletException {
         String logEvent = "{\n" +
                 "    \"id\": \"d290f1ee-6c54-4b01-90e6-d701748f0851\",\n" +
                 "    \"message\": \"application started\",\n" +
@@ -155,7 +155,7 @@ public class TestPostLogs {
     }
 
     @Test
-    public void PostLogsTest_7() throws IOException, ServletException {
+    public void testPostLogs_7() throws IOException, ServletException {
         String logEvent = "{\n" +
                 "    \"id\": \"d290f1ee-6c54-4b01-90e6-d701748f0851\",\n" +
                 "    \"message\": \"application started\",\n" +
@@ -183,7 +183,7 @@ public class TestPostLogs {
     }
 
     @Test
-    public void PostLogsTest_8() throws IOException, ServletException {
+    public void testPostLogs_8() throws IOException, ServletException {
         String logEvent = "{\n" +
                 "    \"id\": \"d290f1ee-6c54-4b01-90e6-d701748f0851\",\n" +
                 "    \"message\": \"application started\",\n" +

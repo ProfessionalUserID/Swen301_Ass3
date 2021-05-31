@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestDeleteLogs {
 
     @Test
-    public void DeleteLogsTest_1() throws IOException, ServletException {
+    public void testDeleteLogs_1() throws IOException, ServletException {
         Persistency.DB.clear();
         LogsServlet servlet = new LogsServlet();
 
