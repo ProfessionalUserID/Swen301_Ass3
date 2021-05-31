@@ -31,4 +31,13 @@
         <url-pattern>/stats</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>StatsXLSServlet</servlet-name>
+        <servlet-class>nz.ac.wgtn.swen301.a3.server.StatsXLSServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StatsXLSServlet</servlet-name>
+        <url-pattern>/statsxls</url-pattern>
+    </servlet-mapping>
+
 </web-app>
